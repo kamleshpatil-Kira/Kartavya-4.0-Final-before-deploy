@@ -14,15 +14,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Time frontend build
+      - name: Time full stack build
         run: |
           echo "Starting Docker build..."
           start=$(date +%s)
           
-          # Run the exact command from our updated Jenkinsfile
+          # Run the exact commands from our updated Jenkinsfile
+          DOCKER_BUILDKIT=1 docker compose -f docker-compose.prod.yml build backend
           DOCKER_BUILDKIT=1 docker compose -f docker-compose.prod.yml build frontend
           
           end=$(date +%s)
           echo "====================================="
-          echo "Build took $((end - start)) seconds"
+          echo "Total Full Stack Build took $((end - start)) seconds"
           echo "====================================="
