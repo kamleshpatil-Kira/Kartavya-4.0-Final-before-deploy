@@ -1,0 +1,65 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: kartavya-backend
+    # API keys are read from the HOST system environment (e.g. /etc/environment).
+    # No .env file is needed on the server if the keys are set system-wide.
+    # To set: sudo vi /etc/environment  → add GEMINI_API_KEY=your_key_here
+    #          source /etc/environment  (or reboot)
+    #     To save your changes and exit from the 
+
+    # vi
+    #  editor, follow these quick steps in that terminal:
+
+
+    # Press the Esc key once or twice (this ensures you are in "Command Mode").
+    # Type :wq (colon, then the letter 'w' for write, and 'q' for quit).
+    # Press Enter.
+    # Summary of commands:
+    # :wq — Save changes and exit.
+    # :q! — Exit without saving (if you made a mistake and want to start over).
+    # Esc then Shift + ZZ — A faster shortcut to save and exit.
+    # Once you are back at the command prompt, don't forget to run the export command we discussed so the new key is actually loaded into your session:
+
+    # bash
+    # set -a; source /etc/environment; set +a
+    environment:
+      # Pass system-level env vars into the container (no value = read from host)
+      - GEMINI_API_KEY
+      - GEMINI_MODEL=${GEMINI_MODEL:-gemini-3-pro-preview}
+      - PORT=${PORT:-8000}
+      - HOST=0.0.0.0
+      - DEBUG=${DEBUG:-False}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./output:/app/output
+      - ./temp:/app/temp
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=3)" ]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        NEXT_API_BASE_URL: http://backend:8000
+    container_name: kartavya-frontend
+    environment:
+      NEXT_API_BASE_URL: http://backend:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

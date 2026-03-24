@@ -1,0 +1,35 @@
+{
+  "name": "kartavya-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroui/react": "^2.8.9",
+    "@types/turndown": "^5.0.6",
+    "framer-motion": "^12.35.1",
+    "lucide-react": "^0.576.0",
+    "marked": "^17.0.4",
+    "next": "^16.1.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "9.0.1",
+    "react-quill-new": "^3.8.3",
+    "rehype-raw": "^7.0.0",
+    "turndown": "^7.2.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "20.11.30",
+    "@types/react": "18.2.66",
+    "@types/react-dom": "18.2.22",
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "typescript": "5.4.2"
+  }
+}

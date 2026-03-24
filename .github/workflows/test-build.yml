@@ -1,0 +1,28 @@
+name: Test Build Speed
+
+on:
+  push:
+    branches: [ "feat/build-optimization-test" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Time frontend build
+        run: |
+          echo "Starting Docker build..."
+          start=$(date +%s)
+          
+          # Run the exact command from our updated Jenkinsfile
+          DOCKER_BUILDKIT=1 docker compose -f docker-compose.prod.yml build frontend
+          
+          end=$(date +%s)
+          echo "====================================="
+          echo "Build took $((end - start)) seconds"
+          echo "====================================="

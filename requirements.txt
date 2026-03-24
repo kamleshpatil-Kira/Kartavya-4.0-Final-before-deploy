@@ -1,0 +1,25 @@
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+python-dotenv==1.0.0
+python-multipart==0.0.6
+google-generativeai>=0.8.0
+google-genai>=0.1.0
+requests==2.31.0
+python-docx==1.1.0
+PyPDF2==3.0.1
+pdfplumber>=0.11.0       # Tier-1 PDF extractor: best for Devanagari/CJK/Arabic multi-script PDFs
+pymupdf>=1.24.0          # Tier-2 PDF extractor: excellent Unicode rendering via libmupdf
+python-pptx==0.6.23
+aiofiles==23.2.1
+pillow>=10.2.0,<12.0
+jinja2>=3.1.2
+lxml>=5.0.0
+reportlab>=4.0
+
+markdown>=3.5.0
+
+openpyxl==3.1.2
+pydantic>=2.9.0
+python-json-logger==2.0.7
+watchdog>=4.0.0
+gTTS>=2.5.0

@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Node / Frontend
+node_modules/
+.next/
+out/
+dist/
+build/
+frontend/node_modules/
+frontend/.next/
+frontend/tsconfig.tsbuildinfo
+
+# Environment variables (may contain secrets)
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Generated output
+output/
+uploads/
+logs/
+temp/
+*.mp3
+*.wav
+*.mp4
+*.avi
+*.pdf
+*.zip
+*.tar.gz
+*.log
+
+# IDE / System
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Docker
+# Note: docker-compose.prod.yml is kept in repo as it's needed for deployment
+
+# SCORM / External training packages (not part of this codebase)
+Food Manager Training*/
+Bloodborne*/
+
+# Test artifacts
+test_xapi_ui/
+
+# Miscellaneous docs not needed in repo
+*.docx
+Content Creation Guidelines*.docx
+Xapi export changes.docx
+
+# Root-level lock files (frontend has its own)
+/package-lock.json
+/package.json
+
+# Log files
+backend/backend.log
+backend/steps.log
+frontend/frontend.log
+frontend/npm.log
+
+# Ignore specific JSON files that may contain secrets or local configs
+# but keep package.json, tsconfig.json, and other config files
+.vscode/settings.json
+config.local.json
+secrets.json
+
+# IMPORTANT: Do NOT use *.json - it blocks package.json and breaks builds!
