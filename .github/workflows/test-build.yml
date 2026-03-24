@@ -2,7 +2,7 @@ name: Test Build Speed
 
 on:
   push:
-    branches: [ "feat/build-optimization-test" ]
+    branches: [ "main" ]
 
 jobs:
   build:
